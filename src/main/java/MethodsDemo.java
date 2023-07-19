@@ -46,7 +46,7 @@ public class MethodsDemo {
 
     }
 
-    public void getData23(){
+    public void getData23() {
         MethodsDemo2.getUserData();
     }
 

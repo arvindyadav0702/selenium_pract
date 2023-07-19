@@ -8,16 +8,15 @@
         </listeners>
 
         <test name="mytest">
+            <parameter name="Test" value="This is testNG data"></parameter>
             <groups>
                 <run>
                     <include name="Sanity"/>
-
                 </run>
             </groups>
 
             <classes>
                 <class name="ReadDataExcel"/>
-
             </classes>
         </test>
 
