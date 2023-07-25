@@ -49,7 +49,7 @@ public class LoginStepDef {
 //            File DestFile=new File("fileWithPath");
 //            File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //            FileUtils.copyFile(scr, DestFile);
-           TakesScreenshot ts = (TakesScreenshot) driver;
+            TakesScreenshot ts = (TakesScreenshot) driver;
             byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
 
@@ -59,12 +59,10 @@ public class LoginStepDef {
 
     @Given("User Launch browser")
     public void user_launch_browser() {
-        if (br.equals("chrome")) {
-            driver = new ChromeDriver();
-        } else if (br.equals("firefox")) {
-            driver = new FirefoxDriver();
-        } else if (br.equals("edge")) {
-            driver = new EdgeDriver();
+        switch (br) {
+            case "chrome" -> driver = new ChromeDriver();
+            case "firefox" -> driver = new FirefoxDriver();
+            case "edge" -> driver = new EdgeDriver();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
@@ -107,7 +105,6 @@ public class LoginStepDef {
             driver.findElement(By.name("Username")).sendKeys(userName);
 
 
-
             String passWord = form.get("Password");
 
             System.out.println("Password :" + passWord);
@@ -118,7 +115,6 @@ public class LoginStepDef {
 
             driver.findElement(By.id("LoginBtn")).submit();
             driver.switchTo().alert().dismiss();
-
 
 
         }
@@ -135,7 +131,7 @@ public class LoginStepDef {
 
         List<Map<String, String>> datas = dt.asMaps();
         String name = datas.get(0).toString();
-        String pass= datas.get(1).toString();
+        String pass = datas.get(1).toString();
 
     }
 
@@ -143,10 +139,10 @@ public class LoginStepDef {
     @Then("User navigates to MyAccount Page")
     public void user_navigates_to_my_account_page() {
 
-      Set<String> s = driver.getWindowHandles();
+        Set<String> s = driver.getWindowHandles();
         Iterator<String> st = s.iterator();
 
-        while(st.hasNext()){
+        while (st.hasNext()) {
             System.out.println("this is new window");
             st.next();
         }

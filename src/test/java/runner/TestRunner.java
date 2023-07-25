@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber-html-reports"
                 , "json:target/cucumber-html-reports/cucumber.json"
 //                , "com.epam.reportportal.cucumber.ScenarioReporter"
-//                , "rerun:rerun/re
+                , "rerun: target/rerun.txt"
 //                run.txt"
         }
 //        , dryRun = true

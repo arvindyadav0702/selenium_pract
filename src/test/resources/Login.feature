@@ -14,6 +14,26 @@ Feature: Login with Valid Credentials
     Examples:
       | username   | password |
       | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+      | arvind0702 | Passw123 |
+
+
+
 
 
  

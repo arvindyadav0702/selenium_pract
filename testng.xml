@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-    <suite name="mySuite">
-        <listeners>
-<!--            <listener class-name="ListenersPractice"/>-->
-            <listener class-name="ExtentReportManager"/>
-        </listeners>
+<suite name="mySuite">
+    <listeners>
+        <listener class-name="ListenersPractice"/>
+        <!--            <listener class-name="ExtentReportManager"/>-->
+    </listeners>
 
-        <test name="mytest">
-            <parameter name="Test" value="This is testNG data"></parameter>
-            <groups>
-                <run>
-                    <include name="Sanity"/>
-                </run>
-            </groups>
+    <test name="mytest">
+        <parameter name="Test" value="This is testNG data"/>
+        <groups>
+            <run>
+                <include name="Sanity"/>
+            </run>
+        </groups>
 
-            <classes>
-                <class name="ReadDataExcel"/>
-            </classes>
-        </test>
+        <classes>
+            <class name="ReadDataExcel"/>
+        </classes>
 
-    </suite>
+    </test>
+
+</suite>

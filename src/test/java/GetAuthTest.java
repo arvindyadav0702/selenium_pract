@@ -1,9 +1,14 @@
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class GetAuthTest {
+
+    private static String token;
+    static String access_token;
 
     @Test
     public void getAccessToken() {
@@ -23,7 +28,7 @@ public class GetAuthTest {
                 .assertThat().statusCode(200)
                 .extract().response().asString();
 
-        String access_token = ReusableClass.rawToJson(response)
+        access_token = ReusableClass.rawToJson(response)
                 .get("access_token");
 
         System.out.println(access_token);
@@ -39,6 +44,41 @@ public class GetAuthTest {
                 .extract().response().asString();
 
         System.out.println(queryoutput);
+    }
+
+    @Test(priority = 1)
+    public void ValidateToken() {
+
+        Response response = given().header("Content-Type", "application/json")
+                .body("{\n" + " \"mobile\": \"2022014667\",\n" + " \"otp\": \"2432\"\n" + "}")
+                .when().post("https://api.phedmanipur.com/api/v1/user/validateOtp");
+
+        Assert.assertEquals(response.statusCode(), 200);
+
+        Assert.assertEquals(response.body().jsonPath().getString("message"), "User Verified Successfully");
+
+        response.prettyPrint();
+
+        token = response.body().jsonPath().getString("data.accessToken");
+        System.out.println(token);
+    }
+
+    @Test(priority = 2)
+
+    public void getUserProfileData() {
+
+        Response response = given().header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + token)
+                .body("{\n" + " \"siteId\": \"1522000580\"\n" + "}")
+
+                .when().post("https://api.phedmanipur.com/api/v1/user/getUserProfileData");
+
+        Assert.assertEquals(response.statusCode(), 200);
+
+        Assert.assertEquals(response.body().jsonPath().getString("message"), "Data retrieved successfully");
+
+        response.prettyPrint();
+
     }
 
 

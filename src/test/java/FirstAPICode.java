@@ -1,125 +1,73 @@
+import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.apache.groovy.json.internal.JsonParserUsingCharacterSource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+
 //@Listeners(ExtentReportPractice.class)
 public class FirstAPICode {
 
+    private static String IDNAME;
 
+    //Post Method Check
     @Test
     public static void addBook() {
 
         RestAssured.baseURI = "https://rahulshettyacademy.com";
 
-        String response = given().header("Content-Type", "application/json").
-                body(Payload.addBook()).
-                when().post("/Library/Addbook.php").
-                then().log().all().assertThat().statusCode(200).
-                extract().response().asString();
+        String resp = given()
+                .body("{\n" +
+                        "\"name\":\"LearnAppium Automation with Java\",\n" +
+                        "\"isbn\":\"bcd\",\n" +
+                        "\"aisle\":\"3666\",\n" +
+                        "\"author\":\"John Hello\"\n" +
+                        "}\n")
+                .when().urlEncodingEnabled(false).post("/Library/Addbook.php")
+                .then().log().all()
+                .extract().response().asString();
 
-        System.out.println(response);
+        System.out.println(resp);
 
-        JsonPath jsonPath = ReusableClass.rawToJson(response);
-        String ID = jsonPath.getString("ID");
+        JsonPath js = new JsonPath(resp);
+        IDNAME = js.getString("ID");
 
-        Assert.assertEquals(ID, "bcd2926");
     }
 
-    //deleting the created record
+
+    //To Get the Details
     @Test
-    public void deleteRecord() {
+    public void getBookDetails() {
         RestAssured.baseURI = "https://rahulshettyacademy.com";
 
-        String delResponse = given().header("Content-Type", "application/json").
-                body("{\n" +
-                        "    \"ID\": \"bcd2926\"\n" +
-                        "}").
-                when().multiPart("file", new File("name.txt")).delete("/Library/DeleteBook.php").
-                then().log().all().assertThat().statusCode(200).
-                extract().response().asString();
-//      System.out.println(delResponse);
-        String delMessage = ReusableClass.rawToJson(delResponse).getString("msg");
-        System.out.println(delMessage);
+        String respo = given().queryParam("ID", IDNAME)
+                .when().get("/Library/GetBook.php")
+                .then().log().all()
+                .extract().response().asString();
+
+        System.out.println(respo);
 
 
     }
+
+    //To Delete the book Details
+
+    public void deleteBookDetaiks() {
+
+        RestAssured.baseURI = "https://rahulshettyacademy.com";
+
+        given().when().then();
+    }
+//To Patch the Book Details
+
+    public void patchBook() {
+
+    }
+
+
 }
-
-
-//    public class DynamicJson {
-//
-//
-//
-//        @Test(dataProvider="BooksData")
-//
-//        public void addBook(String isbn,String aisle)
-//
-//
-//
-//        {
-//
-//
-//
-//
-//            Response resp=given().
-//
-//                    header("Content-Type","application/json").
-//
-//                    body(Payload.Addbook(isbn,aisle)).
-//
-//                    when().
-//
-//                    post("/Library/Addbook.php").
-//
-//                    then().assertThat().statusCode(200).
-//
-//                    extract().response();
-//
-//            JsonPath js= ReusableMethods.rawToJson(resp);
-//
-//            String id=js.get("ID");
-//
-//            System.out.println(id);
-//
-//
-//
-//            //deleteBOok
-//
-//        }
-//
-//        @DataProvider(name="BooksData")
-//
-//        public Object[][]  getData()
-//
-//        {
-//
-////array=collection of elements
-//
-////multidimensional array= collection of arrays
-//
-//            return new Object[][] {‌{"ojfwty","9363"},{"cwetee","4253"}, {"okmfet","533"} };
-//
-//        }
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
