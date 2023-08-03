@@ -11,7 +11,7 @@ public class ReusableClass {
 
 
     @DataProvider(name = "ID")
-    public Object[][] getData() {
+    public static Object[][] getData() {
 
         return new String[][]{
                 {"Data Structures & Algorithms",

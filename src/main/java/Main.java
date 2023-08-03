@@ -1,3 +1,4 @@
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
@@ -30,8 +32,8 @@ public class Main {
 ////        driver.quit();
 //
 //
-//        File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//                FileUtils.copyFile(scr, new File(""));
+        File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scr, new File("C:/Users/arvin/Documents/chromedriver_win32/"));
 
                 driver.switchTo().newWindow(WindowType.WINDOW);
 
@@ -41,7 +43,7 @@ public class Main {
 
         Robot rob = new Robot();
         rob.keyPress(KeyEvent.VK_ENTER);
-//        rob.keyRelease();
+        rob.keyRelease(KeyEvent.VK_ENTER);
 
 
 

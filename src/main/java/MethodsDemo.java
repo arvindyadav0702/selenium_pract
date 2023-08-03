@@ -7,9 +7,7 @@ public class MethodsDemo {
 
 
         MethodsDemo d = new MethodsDemo();
-
         String name = d.getData();
-
         System.out.println(name);
         getData2();
 

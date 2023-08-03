@@ -1,5 +1,8 @@
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,14 +18,29 @@ public class GetAuthTest {
         String urlName = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AZEOvhUIhwn6s4Ypw8UmY2YMs0uPLfRE-4IAEPkaFgKHCVB2KQ-rWzFP-fbou_3jnVXAuQ&scope=email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none";
         String code = urlName.split("code=")[1].split("&scope")[0];
 
-        RestAssured.baseURI = "https://www.googleapis.com/oauth2/v4/token";
+        RequestSpecification req = new RequestSpecBuilder().setContentType(ContentType.JSON)
+                .setBaseUri("https://www.googleapis.com/oauth2/v4/token")
+                .addQueryParam("code", code)
+                .addQueryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
+                .addQueryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
+                .addQueryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
+                .addQueryParam("grant_type", "authorization_code")
+                .build();
 
-        String response = given().urlEncodingEnabled(false).
-                queryParam("code", code)
-                .queryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
-                .queryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
-                .queryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
-                .queryParam("grant_type", "authorization_code")
+//        RestAssured.baseURI = "https://www.googleapis.com/oauth2/v4/token";
+//
+//        String response = given().urlEncodingEnabled(false).
+//                queryParam("code", code)
+//                .queryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
+//                .queryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
+//                .queryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
+//                .queryParam("grant_type", "authorization_code")
+//                .when().post()
+//                .then().log().all()
+//                .assertThat().statusCode(200)
+//                .extract().response().asString();
+
+        String response = given().spec(req)
                 .when().post()
                 .then().log().all()
                 .assertThat().statusCode(200)

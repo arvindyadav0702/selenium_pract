@@ -8,11 +8,14 @@ import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 //@Listeners(ExtentReportPractice.class)
 public class ReadDataExcel {
 
-    @Test(groups = {"Sanity"} , priority = 2)
+    @Test(groups = {"Sanity"}, priority = 2)
     @Parameters({"Test"})
     public void readExcel(String name) throws IOException {
 
@@ -25,9 +28,9 @@ public class ReadDataExcel {
 
         int totalrows = sheet.getLastRowNum();
         int columntotal = sheet.getRow(1).getLastCellNum();
-
-        System.out.println(totalrows);
-        System.out.println(columntotal);
+//
+//        System.out.println(totalrows);
+//        System.out.println(columntotal);
 
         for (int r = 0; r <= totalrows; r++) {
             XSSFRow rows = sheet.getRow(r);
@@ -50,21 +53,21 @@ public class ReadDataExcel {
 
     }
 
-    @DataProvider(name ="excel-data")
-    public Object[][] excelDP() throws IOException{
+
+    public Object[][] excelDP() throws IOException {
         //We are creating an object from the excel sheet data by calling a method that reads data from the excel stored locally in our system
         Object[][] arrObj = getExcelData("C:\\Users\\arvin\\Documents\\Trades.xlsx",
                 "Trades.xlsx");
         System.out.println(arrObj);
         return arrObj;
     }
+
     //This method handles the excel - opens it and reads the data from the respective cells using a for-loop & returns it in the form of a string array
-    @Test(dataProvider = "excel-data", groups = {"Sanity"},priority = 1)
-    public String[][] getExcelData(String fileName, String sheetName){
+    @Test(dataProvider = "excel-data", groups = {"Sanity"}, priority = 1)
+    public String[][] getExcelData(String fileName, String sheetName) {
 
         String[][] data = null;
-        try
-        {
+        try {
             FileInputStream fis = new FileInputStream(fileName);
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sh = wb.getSheet(sheetName);
@@ -72,20 +75,71 @@ public class ReadDataExcel {
             int noOfRows = sh.getLastRowNum();
             int noOfCols = row.getLastCellNum();
             Cell cell;
-            data = new String[noOfRows-1][noOfCols];
-            for(int i =1; i<noOfRows;i++){
-                for(int j=0;j<noOfCols;j++){
+            data = new String[noOfRows - 1][noOfCols];
+            for (int i = 1; i < noOfRows; i++) {
+                for (int j = 0; j < noOfCols; j++) {
                     row = sh.getRow(i);
-                    cell= row.getCell(j);
-                    data[i-1][j] = cell.getStringCellValue();
+                    cell = row.getCell(j);
+                    data[i - 1][j] = cell.getStringCellValue();
                 }
             }
-        }
-        catch (Exception e) {
-            System.out.println("The exception is: " +e.getMessage());
+        } catch (Exception e) {
+            System.out.println("The exception is: " + e.getMessage());
         }
         return data;
     }
+
+
+    public static void main(String[] args) {
+        String string = "The best of both worlds";
+        int count = 0;
+
+        //Counts each character except space
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) != ' ')
+                count++;
+        }
+
+        String str = "Arvid";
+
+        characterCount(str);
+
+        //Displays the total number of characters present in the given string
+        System.out.println("Total number of characters in a string: " + count);
+    }
+
+    static void characterCount(String inputString) {
+        // Creating a HashMap containing char
+        // as a key and occurrences as  a value
+        HashMap<Character, Integer> charCountMap
+                = new HashMap<Character, Integer>();
+
+        // Converting given string to char array
+
+        char[] strArray = inputString.toCharArray();
+
+        // checking each char of strArray
+        for (char c : strArray) {
+            if (charCountMap.containsKey(c)) {
+
+                // If char is present in charCountMap,
+                // incrementing it's count by 1
+                charCountMap.put(c, charCountMap.get(c) + 1);
+            } else {
+
+                // If char is not present in charCountMap,
+                // putting this char to charCountMap with 1 as it's value
+                charCountMap.put(c, 1);
+            }
+
+        }
+
+        // Printing the charCountMap
+        for (Map.Entry entry : charCountMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
+
 
 
 }

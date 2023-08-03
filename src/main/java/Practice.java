@@ -93,6 +93,7 @@ public class Practice {
 //        }
          File filepath = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\prop.properties");
         FileReader file = new FileReader(filepath);
+//        Properties prop = new Properties(file);
         Properties prop = new Properties();
         prop.load(file);
 
