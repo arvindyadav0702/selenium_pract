@@ -3,7 +3,7 @@ Feature: Login with Valid Credentials
   @sanity
   Scenario Outline: Successful Login with Valid Credentials
     Given User Launch browser
-    And opens URL "http://localhost/opencart/upload/"
+    And opens URL "https://www.google.co.in/"
     When User navigate to MyAccount menu
     And click on Login
     And User enters Email as "<username>" and Password as "<password>"
@@ -16,24 +16,4 @@ Feature: Login with Valid Credentials
       | arvind0702 | Passw123 |
       | arvind0702 | Passw123 |
       | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-      | arvind0702 | Passw123 |
-
-
-
-
-
  

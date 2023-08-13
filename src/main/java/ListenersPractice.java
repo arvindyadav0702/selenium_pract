@@ -5,7 +5,6 @@ import org.testng.asserts.SoftAssert;
 public class ListenersPractice implements ITestListener {
 
 
-
     public void onTestStart(ITestResult result) {
         // not implemented
         System.out.println("Test has been started");
@@ -32,9 +31,6 @@ public class ListenersPractice implements ITestListener {
         System.out.println("Test is Skipped");
 
     }
-
-
-
 
 
 }

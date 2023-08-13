@@ -1,8 +1,11 @@
-import io.restassured.RestAssured;
+package APITests;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -54,8 +57,8 @@ public class GetAuthTest {
 
         //pass access_token to query
 
-        String queryoutput = given().urlEncodingEnabled(false).
-                queryParam("access_token", access_token)
+        String queryoutput = given().auth().oauth2(access_token).urlEncodingEnabled(false)
+                .queryParam("access_token", access_token)
                 .when().post("https://rahulshettyacademy.com/getCourse.php")
                 .then().log().all()
                 .assertThat().statusCode(200)

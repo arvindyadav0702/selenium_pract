@@ -7,17 +7,17 @@
         <!--            <listener class-name="ExtentReportManager"/>-->
     </listeners>
 
-    <test name="mytest">
-        <parameter name="Test" value="This is testNG data"/>
+    <test name="mytest" parallel="classes" thread-count="2">
+<!--        <parameter name="Test" value="This is testNG data"/>-->
         <groups>
             <run>
                 <include name="Sanity"/>
             </run>
         </groups>
-
         <classes>
-            <class name="ReadDataExcel"/>
+            <class name="programsforJava.ReadDataExcel"/>
         </classes>
+
 
     </test>
 

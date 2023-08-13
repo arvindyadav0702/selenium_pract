@@ -7,28 +7,27 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class ExtentReportManager implements ITestListener
-{
+public class ExtentReportManager implements ITestListener {
     public ExtentSparkReporter sparkReporter;  // UI of the report
     public ExtentReports extent;  //populate common info on the report
     public ExtentTest test; // creating test case entries in the report and update status of the test methods
 
     public void onStart(ITestContext context) {
 
-        sparkReporter=new ExtentSparkReporter(System.getProperty("user.dir")+ "/reports/myReport.html");//specify location of the report
+        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/myReport.html");//specify location of the report
 
         sparkReporter.config().setDocumentTitle("Automation Report"); // TiTle of report
         sparkReporter.config().setReportName("Functional Testing"); // name of the report
         sparkReporter.config().setTheme(Theme.STANDARD);
 
-        extent=new ExtentReports();
+        extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
 
-        extent.setSystemInfo("Computer Name","localhost");
-        extent.setSystemInfo("Environment","QA");
-        extent.setSystemInfo("Tester Name","Pavan");
-        extent.setSystemInfo("os","Windows10");
-        extent.setSystemInfo("Browser name","Chrome,Firefox,Edge");
+        extent.setSystemInfo("Computer Name", "localhost");
+        extent.setSystemInfo("Environment", "QA");
+        extent.setSystemInfo("Tester Name", "Pavan");
+        extent.setSystemInfo("os", "Windows10");
+        extent.setSystemInfo("Browser name", "Chrome,Firefox,Edge");
 
     }
 

@@ -5,16 +5,16 @@
   <suite started-at="2023-07-05T15:32:10 IST" name="mySuite" finished-at="2023-07-05T15:32:11 IST" duration-ms="1392">
     <groups>
       <group name="Sanity">
-        <method signature="ReadDataExcel.main()[pri:0, instance:ReadDataExcel@223f3642]" name="main" class="ReadDataExcel"/>
+        <method signature="programsforJava.ReadDataExcel.main()[pri:0, instance:programsforJava.ReadDataExcel@223f3642]" name="main" class="programsforJava.ReadDataExcel"/>
       </group> <!-- Sanity -->
     </groups>
     <test started-at="2023-07-05T15:32:10 IST" name="mytest" finished-at="2023-07-05T15:32:11 IST" duration-ms="1392">
-      <class name="ReadDataExcel">
-        <test-method signature="main()[pri:0, instance:ReadDataExcel@223f3642]" started-at="2023-07-05T15:32:10 IST" name="main" finished-at="2023-07-05T15:32:11 IST" duration-ms="1121" status="PASS">
+      <class name="programsforJava.ReadDataExcel">
+        <test-method signature="main()[pri:0, instance:programsforJava.ReadDataExcel@223f3642]" started-at="2023-07-05T15:32:10 IST" name="main" finished-at="2023-07-05T15:32:11 IST" duration-ms="1121" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- main -->
-      </class> <!-- ReadDataExcel -->
+      </class> <!-- programsforJava.ReadDataExcel -->
     </test> <!-- mytest -->
   </suite> <!-- mySuite -->
 </testng-results>

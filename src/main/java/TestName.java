@@ -1,6 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,8 +12,10 @@ public class TestName {
 
     @Test
     public void testingMethod() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/arvin/Documents/chromedriver_win32/chromedriver.exe");
-        driver = new ChromeDriver();
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\arvin\\Documents\\chromedriver_win32\\chromedriver.exe");
+
+//        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("www.google.co.in");
 

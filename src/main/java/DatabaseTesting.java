@@ -2,7 +2,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import  java.sql.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,13 +20,13 @@ public class DatabaseTesting {
     public static String DB_PASSWORD = "your_password";
 
     @BeforeTest
-    public void setUp() throws Exception {
+    public void setUp() {
         try {
 // Database connection
             String dbClass = "com.mysql.jdbc.Driver";
             Class.forName(dbClass);
 // Get connection to DB
-            Connection con =  DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 // Statement object to send the SQL statement to the Database
             stmt = con.createStatement();
         } catch (Exception e) {

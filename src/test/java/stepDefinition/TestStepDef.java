@@ -1,4 +1,9 @@
+package stepDefinition;
+
 public class TestStepDef {
+    String abc;
+    int intgerrvalue;
+    int onemore;
     public String getAbc() {
         return abc;
     }
@@ -23,9 +28,6 @@ public class TestStepDef {
         this.onemore = onemore;
     }
 
-    String abc;
-    int intgerrvalue;
-    int onemore;
 
 
 

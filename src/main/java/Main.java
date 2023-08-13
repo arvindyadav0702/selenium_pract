@@ -5,20 +5,21 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws InterruptedException, IOException, AWTException {
-        System.setProperty("webdriver.chrome.driver","C:/Users/arvin/Documents/chromedriver_win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/arvin/Documents/chromedriver_win32/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+//        driver.findElement(By.xpath("//*[contains(text,()))
 
         driver.get("https://google.com/ncr");
         driver.findElement(By.name("q")).sendKeys("cheese" + Keys.ENTER);
@@ -32,10 +33,10 @@ public class Main {
 ////        driver.quit();
 //
 //
-        File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scr, new File("C:/Users/arvin/Documents/chromedriver_win32/"));
+        File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scr, new File("C:/Users/arvin/Documents/chromedriver_win32/"));
 
-                driver.switchTo().newWindow(WindowType.WINDOW);
+        driver.switchTo().newWindow(WindowType.WINDOW);
 
 
         Actions actions = new Actions(driver);
@@ -45,6 +46,10 @@ public class Main {
         rob.keyPress(KeyEvent.VK_ENTER);
         rob.keyRelease(KeyEvent.VK_ENTER);
 
+        List<WebElement> ele = driver.findElements(By.xpath("EE"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(ExpectedConditions.visibilityOfAllElements(ele).toString());
+        js.executeScript("window.scrollBy(0,100)");
 
 
     }

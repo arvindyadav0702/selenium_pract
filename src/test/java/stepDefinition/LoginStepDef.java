@@ -1,14 +1,10 @@
-package stepDefinitions;
+package stepDefinition;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.eo.Se;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,9 +12,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.xml.crypto.Data;
-import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
@@ -34,15 +30,21 @@ public class LoginStepDef {
 
 //    @Before
 
+
     public void setup()    //Junit hook - executes once before starting
     {
         //Reading config.properties (for browser)
-        rb = ResourceBundle.getBundle("config");
+        rb = ResourceBundle.getBundle("prop");
         br = rb.getString("browser");
+        System.out.println(br);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
+
 
     }
 
-    @After
+
     public void tearDown(Scenario scenario) throws IOException {
         System.out.println("Scenario status ======>" + scenario.getStatus());
         if (scenario.isFailed()) {
@@ -59,10 +61,27 @@ public class LoginStepDef {
 
     @Given("User Launch browser")
     public void user_launch_browser() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//        wait.until(ExpectedConditions.);
+
         switch (br) {
-            case "chrome" -> driver = new ChromeDriver();
-            case "firefox" -> driver = new FirefoxDriver();
-            case "edge" -> driver = new EdgeDriver();
+            case "chrome" -> {
+//                System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "C:/Users/arvin/Documents/chromedriver_win32/chromedriver.exe");
+//                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+
+            }
+            case "firefox" -> {
+//                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+
+            }
+            case "edge" -> {
+//                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+
+            }
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }

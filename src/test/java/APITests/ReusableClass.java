@@ -1,3 +1,5 @@
+package APITests;
+
 import io.restassured.path.json.JsonPath;
 import org.testng.annotations.DataProvider;
 

@@ -1,16 +1,15 @@
+package programsforJava;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 //@Listeners(ExtentReportPractice.class)
 public class ReadDataExcel {
@@ -90,23 +89,23 @@ public class ReadDataExcel {
     }
 
 
-    public static void main(String[] args) {
-        String string = "The best of both worlds";
-        int count = 0;
-
-        //Counts each character except space
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) != ' ')
-                count++;
-        }
-
-        String str = "Arvid";
-
-        characterCount(str);
-
-        //Displays the total number of characters present in the given string
-        System.out.println("Total number of characters in a string: " + count);
-    }
+//    public static void main(String[] args) {
+//        String string = "The best of both worlds";
+//        int count = 0;
+//
+//        //Counts each character except space
+//        for (int i = 0; i < string.length(); i++) {
+//            if (string.charAt(i) != ' ')
+//                count++;
+//        }
+//
+//        String str = "Arvid";
+//
+//        characterCount(str);
+//
+//        //Displays the total number of characters present in the given string
+//        System.out.println("Total number of characters in a string: " + count);
+//    }
 
     static void characterCount(String inputString) {
         // Creating a HashMap containing char
@@ -141,5 +140,62 @@ public class ReadDataExcel {
     }
 
 
+//        public static void main(String args[]) {
+//            // Your code goes here
+//            Scanner scn = new Scanner(System.in);
+//            int n = scn.nextInt();
+//
+//            int a = 0; //0th fibonacci number
+//            int b = 1; //1st fibonacci number
+//
+//            if(n == 0) System.out.println(a);
+//            else if(n == 1) System.out.println(b);
+//            else {
+//                int c = 0;
+//                for(int i=2;i<=n;i++) {
+//                    c = a + b;
+//                    a = b;
+//                    b = c;
+//                }
+//
+//                System.out.println(c);
+//            }
+//
+//        }
 
+
+    public static int countDigitFreq(int n, int d) {
+        int counter = 0;
+        while (n != 0) {
+            int digit = n % 10; //calculate the digit
+            if (digit == d) counter++;
+            n = n / 10;
+        }
+
+        return counter;
+    }
+
+
+    public static void main(String[] args) {
+        // Your code goes here
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt(); //input the number
+        int d = scn.nextInt(); //input the digit
+
+        int x = countDigitFreq(n, d);
+        System.out.println("The digit " + d + " occurs " + x + " times in " + n);
+    }
+
+
+    ArrayList<String> list = new ArrayList<>();
+
+    LinkedList<Integer> inte = new LinkedList<>();
+
+
+    Set<String> settt = new HashSet<>();
+    Set<Integer> seeeee = new TreeSet<>();
 }
+
+
+
+

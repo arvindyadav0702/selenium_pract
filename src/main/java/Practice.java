@@ -1,6 +1,9 @@
-
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class Practice {
     public Practice() throws FileNotFoundException {
@@ -61,7 +64,7 @@ public class Practice {
     }
 
     // Driver code
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
 
 //        // Get the ArrayList with duplicate values
 //        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, 10, 1, 2, 2, 3, 3, 10, 3, 4, 5, 5));
@@ -91,7 +94,7 @@ public class Practice {
 //            String[] parts = line.split(":");
 //
 //        }
-         File filepath = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\prop.properties");
+        File filepath = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\prop.properties");
         FileReader file = new FileReader(filepath);
 //        Properties prop = new Properties(file);
         Properties prop = new Properties();

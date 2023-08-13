@@ -1,4 +1,7 @@
+package APITests;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import programsforJava.ProductName;
 
 public class ObjectToJson {
 
@@ -12,7 +15,9 @@ public class ObjectToJson {
         try {
 
             String values = mapper.writeValueAsString(prod);
-            System.out.println(values);
+            System.out.println(values + "&**************************");
+
+            //reading data
             getJSONtoString(prod);
 
 
@@ -37,7 +42,6 @@ public class ObjectToJson {
 
     public static void getJSONtoString(ProductName productName) {
         System.out.println(productName.getName());
-        System.out.println(productName.getId());
         System.out.println(productName.getPrice());
 
     }

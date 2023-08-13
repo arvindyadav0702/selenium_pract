@@ -1,3 +1,5 @@
+package APITests;
+
 public class Payload {
 
     public static String addBook() {

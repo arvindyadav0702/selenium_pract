@@ -8,15 +8,11 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         stepNotifications = true,
-        features = {"src/test/resources/Login.feature"},
-        glue = {"stepDefinitions"},
+        features = {"src/test/resources/Goibibo.feature"},
+        glue = {"stepDefinition"},
         monochrome = true,
-        plugin = {"pretty", "html:target/cucumber-html-reports"
-                , "json:target/cucumber-html-reports/cucumber.json"
-//                , "com.epam.reportportal.cucumber.ScenarioReporter"
-                , "rerun: target/rerun.txt"
-//                run.txt"
-        }
+        plugin = {"pretty", "html:target/cucumber-reports/cucumber-reports.html"
+                , "json:target/cucumber-reports/cucumber.json"}
 //        , dryRun = true
 
 )

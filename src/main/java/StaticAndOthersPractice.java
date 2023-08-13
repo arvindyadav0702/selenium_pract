@@ -1,18 +1,18 @@
 public class StaticAndOthersPractice {
 
-    public  StaticAndOthersPractice(){
+    public StaticAndOthersPractice() {
 
     }
 
-    private void name1(){
+    private void name1() {
 
         System.out.println("this is 1st method");
 
     }
 
-    public static class SubClass{
+    public static class SubClass {
 
-        private void name1(){
+        private void name1() {
             System.out.println("this is method2");
         }
 
